@@ -20,7 +20,7 @@ namespace BiblioApp.Controllers
         public async Task<bool> ValidarUsuarioAsync(LoginViewModel credenciales)
         {
             // Construir la URL con los parámetros de consulta
-            var url = $"{_baseUrl}/Usuario/validar? correo={Uri.EscapeDataString(credenciales.Usuario)}&clave={Uri.EscapeDataString(credenciales.Contraseña)}";
+            var url = $"{_baseUrl}/Usuario/validar? usuario={Uri.EscapeDataString(credenciales.Usuario)}&contrasena={Uri.EscapeDataString(credenciales.Contraseña)}";
             var response = await _httpClient.PostAsync(url, null);
 
             // Si la respuesta no es exitosa, loguear el mensaje de error
