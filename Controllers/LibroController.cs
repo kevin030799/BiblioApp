@@ -16,13 +16,7 @@ namespace BiblioApp.Controllers
             _libroService = libroService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         //Get: /Libro
-
         public async Task<IActionResult> Index()
         {
             var libros = await _libroService.GetAllLibrosAsync();
