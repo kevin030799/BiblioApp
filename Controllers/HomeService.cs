@@ -1,0 +1,40 @@
+﻿using BiblioApp.Controllers;
+using BiblioApp.Models;
+using System.Net.Http;
+using System;
+using BiblioApp.Models;
+
+namespace BiblioApp.Controllers
+{
+    public class HomeService
+    {
+        private readonly HttpClient _httpClient;
+        private readonly string _baseUrl;
+
+        public HomeService(IConfiguration configuration, HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+            _baseUrl = configuration["ApiSettings:BaseUrl"];
+        }
+
+        public async Task<bool> ValidarUsuarioAsync(LoginViewModel credenciales)
+        {
+            // Construir la URL con los parámetros de consulta
+            var url = $"{_baseUrl}/Usuario/validar? correo={Uri.EscapeDataString(credenciales.Usuario)}&clave={Uri.EscapeDataString(credenciales.Contraseña)}";
+            var response = await _httpClient.PostAsync(url, null);
+
+            // Si la respuesta no es exitosa, loguear el mensaje de error
+            if (!response.IsSuccessStatusCode)
+            {
+                var responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+            // Retornar si la validación fue exitosa
+            return response.IsSuccessStatusCode;
+
+        }
+    }
+}
+
+
+ 
