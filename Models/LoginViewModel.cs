@@ -7,10 +7,10 @@ namespace BiblioApp.Models
         [Required(ErrorMessage = "El usuario es obligatorio")]
         [EmailAddress(ErrorMessage = "Debe ser un usuario válido")]
 
-        public string Usuario { get; set; }
+        public string Correo { get; set; }
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
 
-        public string Contraseña { get; set; }
+        public string Clave { get; set; }
     }
 }
