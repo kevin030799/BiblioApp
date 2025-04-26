@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BiblioApp.Models.UsuariosModel>
+
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar Usuario</a>
+    <a asp-action="ExportToPdf" class="btn btn-outline-danger">Exportar a PDF</a>
+    <a asp-action="ExportToExcel" class="btn btn-outline-success">Exportar a Excel</a> 
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+            <th>Tipo de Usuario</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Apellido</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.Telefono</td>
+                <td>@usuario.TipoUsuario</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@usuario.Id" class="btn btn-sm btn-warning">Editar</a> 
+                    <a asp-action="Delete" asp-route-id="@usuario.Id" class="btn btn-sm btn-danger">Eliminar</a> 
+                    <a asp-action="Details" asp-route-id="@usuario.Id" class="btn btn-sm btn-info">Detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
